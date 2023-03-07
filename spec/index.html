@@ -275,7 +275,10 @@ _:b1,123</pre>
        [<a href="#SPARQL11-QUERY">SPARQL11-QUERY</a>] and Turtle [<cite><a class="bibref" rel="biblioentry" href="#bib-TURTLE">TURTLE</a></cite>] use.</p>
       <p>IRIs are enclosed in <code>&lt;...&gt;</code>, literals are enclosed with double quotes <code>"</code>...<code>"</code> or single quotes <code>'</code> ...<code>'</code> with optional <code>@lang</code> or <code>^^</code>
       for datatype.
-      IRIs <em class="rfc2119" title="must">must</em> be absolute, and datatypes <em class="rfc2119" title="must">must</em> be written without prefixes in their absolute form enclosed in <code>&lt;...&gt;</code>.
+      IRIs are written enclosed in <code>&lt;...&gt;</code>.
+      They <em class="rfc2119" title="must">must</em> conform to the <a href="https://www.rfc-editor.org/rfc/rfc3987#section-2.2">IRI rule</a> of [[[RFC3987]]].
+      Such IRIs include the IRI scheme and <em class="rfc2119" title="must not">must not</em> be a <a href="https://www.rfc-editor.org/rfc/rfc3986#section-4.2>Relative Reference</a>.
+      This includes IRIs used as datatypes.
       </p>
       <p>
          Literals are written with the lexical form in quotes. Tab, newline and carriage return characters (Unicode codepoints 0x09, 0x0A (line feed) and 0x0D (Carriage Return)) are encoded in
