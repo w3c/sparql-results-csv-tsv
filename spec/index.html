@@ -346,8 +346,11 @@ span.cancast:hover { background-color: #ffa;
   <body>
     <section id="abstract">
       <h2>Abstract</h2>
-<p>The formats CSV [[RFC4180]] (comma separated values) and TSV [[IANA-TSV]] (tab separated values) provide simple, easy to process formats for the transmission of tabular data. They are supported as input datat formats to many tools,
-    particularly spreadsheets. This document describes their use for expressing SPARQL query results from <code>SELECT</code> queries.</p>
+      <p>The formats CSV [[RFC4180]] (comma separated values) 
+        and TSV [[IANA-TSV]] (tab separated values) provide simple, easy to process formats
+        for the transmission of tabular data. They are supported as input datat formats by many tools,
+        particularly spreadsheets. This document describes their use for expressing SPARQL query results
+        from <code>SELECT</code> queries.</p>
     </section>
 
     <section id="sotd" class="introductory">
@@ -363,22 +366,28 @@ span.cancast:hover { background-color: #ffa;
 <!-- BODY -->
     <section id="introduction">
     <h2>Introduction</h2>
-    <p>This document describes CSV and TSV formats for expressing the results of a SPARQL <code>SELECT</code> query. They provide lowest common denominator formats between systems using different
-    implementation technologies.</p>
-    <p>Other formats for expression SPARQL results are the SPARQL XML Results Format [[SPARQL12-RESULTS-XML]] and SPARQL
-    JSON Results Format
-     [[SPARQL12-RESULTS-JSON]]. Each format is useful in different application scenarios.</p>
-    <p>The SPARQL Results CSV Results Format is a lossy encoding of a table of results. It does not encode all the details of each RDF term in the results but instead just gives a string without
-    indicating the type of the term (IRI, Literal, Literal with datatype, Literal with language, or blank node). This makes it simple to consume data, such as text and numbers, in applications
-    without needing to understand the details of RDF. In some applications, guesses as to which elements are hyperlinks are made pragmatically, for example, guessing that strings starting "http://"
-    are links.</p>
-    <p>The SPARQL Results TSV Results Format does encode the details of RDF terms in the results table by using the syntax that SPARQL
-     [[SPARQL12-QUERY]] and Turtle [[RDF12-TURTLE]] use. An application receiving a TSV-encoded results set
-    can split each line into elements of the result row, and extract all the details it wishes to process of the RDF terms by simple string processing, without a complete XML or JSON parser required
-    by the more complex SPARQL result formats.</p>
-    <p>When this document uses the words <em class="rfc2119" title="must">must</em>, <em class="rfc2119" title="must not">must not</em>, <em class="rfc2119" title="should">should</em>, <em class=
-    "rfc2119" title="should not">should not</em>, <em class="rfc2119" title="may">may</em> and <em class="rfc2119" title="recommended">recommended</em>, they must be interpreted as described in RFC
-    2119 [[RFC2119]].</p>
+    <p>This document describes CSV and TSV formats for expressing the results of a SPARQL <code>SELECT</code> query.
+      They provide lowest common denominator formats between systems using different implementation technologies.</p>
+    <p>Other formats for expression of SPARQL results are the SPARQL Results XML Format 
+      [[SPARQL12-RESULTS-XML]] and 
+      the SPARQL Results JSON Format [[SPARQL12-RESULTS-JSON</a>]]. Each format is useful
+      in different application scenarios.</p>
+    <p>The SPARQL Results CSV Format is a lossy encoding of a table of results. It does not encode all the
+      details of each RDF term in the results; instead, it just gives a string without indicating the type of the
+      term (IRI, Literal, Literal with datatype, Literal with language, or blank node). This makes it simple to
+      consume data, such as text and numbers, in applications that don't need to understand the details of RDF. In
+      some applications, guesses as to which elements are hyperlinks are made pragmatically, for example, guessing
+      that strings starting "<code>http://</code>" are links.</p>
+    <p>The SPARQL Results TSV Format does encode the details of RDF terms in the results table, by using the syntax
+      that SPARQL [[SPARQL12-QUERY]] and Turtle [[RDF12-TURTLE]] use. An application receiving
+      a TSV-encoded result set can split each line into elements of the result row, and extract all the details of
+      the RDF terms it wishes to process by simple string processing, without a complete XML or JSON parser as may 
+      by required by the more complex SPARQL result formats.</p>
+    <p>When this document uses the words <em class="rfc2119" title="must">must</em>, <em class="rfc2119" 
+      title="must not">must not</em>, <em class="rfc2119" title="should">should</em>, <em class="rfc2119"
+      title="should not">should not</em>, <em class="rfc2119" title="may">may</em> and <em class="rfc2119"
+      title="recommended">recommended</em>, they must be interpreted as described in RFC
+      2119 [[RFC2119]].</p>
 
       <section id="example1">
       <h3>Example</h3>
@@ -436,42 +445,59 @@ span.cancast:hover { background-color: #ffa;
     </section>
     <section id="general-comments">
     <h2>Transmission issues using CSV and TSV Formats</h2>
-    <p>The SPARQL results formats described here confirm to the formal specifications of the relevant formats, Comma Separated values (CSV) [[RFC4180]] and Tab Separated Value (TSV) [[IANA-TSV]].</p>
-    <p>Systems providing these formats should note that the content types for CSV is <code>text/csv</code> and for TSV <code>text/tab-separated-values</code>. Being <code>text/*</code>, the default character set
-    is US-ASCII. The <code>charset</code> parameter <em class="rfc2119" title="should">should</em> be used in conjunction with SPARQL Results; UTF-8 is recommended: <code>text/csv; charset=utf-8</code> and
-    <code>text/tab-separated-values; charset=utf-8</code>.</p>
-    <p>The end-of-line in CSV is <code>CRLF</code> i.e. Unicode codepoints 13 (0x0D) and 10 (0x0A).</p>
-    <p>The end-of-line in TSV is <code>EOL</code> i.e. Unicode codepoint 10 (0x0A).</p>
-    <p>Applications reading these formats are advised to cope with both CRLF and LF as end of line markers and not rely on conformance to the formal specifications.</p>
+    <p>The SPARQL result formats described here conform to the formal specifications of the relevant formats, 
+      Comma Separated values (CSV) [[RFC4180]] 
+      and Tab Separated Value (TSV) [[IANA-TSV]].</p>
+    <p>Systems providing these formats should note that the content types are <code>text/csv</code> for CSV and 
+      <code>text/tab-separated-values</code> for TSV. Being <code>text/*</code>, the default character set
+      is US-ASCII. The <code>charset</code> parameter <em class="rfc2119" title="should">should</em> be used in
+      conjunction with SPARQL Results; UTF-8 is recommended; giving us <code>text/csv; charset=utf-8</code> and
+      <code>text/tab-separated-values; charset=utf-8</code>.</p>
+    <p>The end-of-line in CSV is <code>CRLF</code>, i.e., Unicode codepoints 13 (<code>U+000D</code>) and 10 (<code>U+000A</code>).</p>
+    <p>The end-of-line in TSV is <code>EOL</code>, i.e., Unicode codepoint 10 (<code>U+000A</code>).</p>
+    <p>Applications reading these formats are advised to cope with both CRLF and LF as end of line markers and
+      not rely on conformance to the formal specifications.</p>
     </section>
     
     <section id="csv-table">
-    <h2>CSV - Comma Separated values</h2>
-    <p>In the SPARQL Results CSV Format, the results table is serialized as one line listing the variables in the results, using the CSV header line, followed by one line for each query solution (a
-    line may end up split by newlines in the data). Values in the results are strings, for URIs, literals and blank nodes, together with numbers when the literals are of numeric XSD datatype.</p>
+    <h2>CSV — Comma Separated values</h2>
+    <p>In the SPARQL Results CSV Format, the results table is serialized as one line listing the variables in
+      the results, using the CSV header line, followed by one line for each query solution. (Note: a line may end up
+      split by newlines in the data). Values in the results are strings for URIs, literals and blank nodes, together
+      with numbers when the literals are of numeric XSD datatype.</p>
       <section id="serializing-results">
       <h3>Serializing the Results Table</h3>
-      <p>The first line of a SPARQL CSV Results Format response is the header line giving the names of the variables used in the result set. The header line consists of the variable names, without
-      leading <code>?</code>, separated by commas.</p>
-      <p>While the <code>text/csv</code> format does not require a header row, the SPARQL CSV Results Format <em class="rfc2119" title="must">must</em> use a header row. If the content type parameter
-      <code>header</code> is used, it <em class="rfc2119" title="must">must</em> be <code>header=present</code>.</p>
-      <p>The remaining rows are the values of the results, with each binding determined by the position in the row, corresponding to the entry in the header line.</p>
-      <p>If a variable is not bound, an empty field is used (e.g. <code>,,</code>). Each row <em class="rfc2119" title="must">must</em> have the same number of fields, with each field corresponding to a
-      binding to the variable in the header line in the same field position.</p>
+      <p>The first line of a SPARQL Results CSV Format response is the header line, giving the names of the variables
+        used in the result set. The header line consists of the variable names, without leading question marks
+        <code>?</code>, separated by commas.</p>
+      <p>While the <code>text/csv</code> format does not require a header row, the SPARQL Results CSV Format 
+        <em class="rfc2119" title="must">must</em> use a header row. If the content type parameter
+        <code>header</code> is used, it <em class="rfc2119" title="must">must</em> be <code>header=present</code>.</p>
+      <p>The remaining rows are the values of the results, with each binding determined by the position in the row,
+        corresponding to the entry in the header line.</p>
+      <p>If a variable is not bound, an empty field is used (e.g. <code>,,</code>). Each row <em class="rfc2119"
+        title="must">must</em> have the same number of fields, with each field corresponding to a
+        binding to the variable in the header line in the same field position.</p>
       </section>
 
       <section id="csv-terms">
       <h3>Serializing RDF Terms</h3>
-      <p>The entry in each field is the string corresponding to the RDF term value. (c.f. SPARQL STR()) without syntax to denote what kind of term it is. The encoding quoting rules of CSV format must
-      be used.</p>
-      <p>Blank nodes use the <code>_:label</code> form from Turtle and SPARQL. Use of the same label indicates the same blank node within the results but has no significance outside the results.</p>
-      <p>Fields containing any of <code>"</code> (<small>QUOTATION MARK</small>, code point 34, 0x22 in Unicode [[UNICODE]]),
-      <code>,</code> (<small>COMMA</small>, code point 44, 0x2C), <code>LF</code> (code point 10, 0x0A) or <code>CR</code> (code point 13, 0x0D) must be quoted using the quoting mechanism of [[RFC4180]].
-      Fields are limited by a pair of quotation marks <code>"</code> (code point 0x22). Within quote strings, all
-      characters except <code>"</code>, including new line characters have their exact meaning - newlines do not end a CSV record. <code>"</code> is written using a pair of quotation
-      marks <code>""</code>.</p>
-      <p>The standard CSV format does not distinguish between missing values and empty strings. The SPARQL 1.2 CSV Results Format uses the same representation for unbound variables as for variables
-      bound to an empty string literal. The other SPARQL Result formats (based on JSON, TSV or XML) can be used if this distinction is required.</p>
+      <p>The entry in each field is the string corresponding to the RDF term value. (cf. SPARQL <code>STR()</code>)
+        without syntax to denote what kind of term it is. The encoding quoting rules of CSV format must be used.</p>
+      <p>Blank nodes use the <code>_:label</code> form from Turtle and SPARQL. Use of the same label indicates the
+        same blank node within the result set but has no significance outside the result set.</p>
+      <p>Fields containing any of <code>"</code> (<small>QUOTATION MARK</small>, code point 34, <code>U+0022</code> in 
+        Unicode [[UNICODE]]),
+        <code>,</code> (<small>COMMA</small>, code point 44, <code>U+002C</code>), <code>LF</code> (code point 10,
+        <code>U+000A</code>) or <code>CR</code> (code point 13, <code>U+000D</code>) must be quoted using the quoting
+        mechanism of RFC4180 [[RFC4180]].
+        Fields are limited by a pair of quotation marks <code>"</code> (code point <code>U+0022</code>). Within quote strings, all
+        characters except <code>"</code>, including new line characters have their exact meaning — newlines do not
+        end a CSV record. Inline <code>"</code> is written using a pair of quotation marks <code>""</code>.</p>
+      <p>The standard CSV format does not distinguish between missing values and empty strings. The SPARQL 1.2
+        Results CSV Format uses the same representation for unbound variables as for variables bound to an empty
+        string literal. The other SPARQL Result formats (based on JSON, TSV, or XML) can be used if this distinction
+        is required.</p>
       </section>
     
       <section id="csv-example">
@@ -489,43 +515,58 @@ _:b1,123</pre>
     </section>
 
     <section id="tsv">
-    <h2>TSV - Tab Separated values</h2>
-    <p>In the SPARQL Results TSV Format, the results table is serialized as one line listing the variables in the results, followed by one line for each query solution. All RDF terms used in the
-    format are encoded in the format specified by Turtle [[RDF12-TURTLE]] except that the triple quoted forms for the lexical part of
-    literals <em class="rfc2119" title="must not">must not</em> be used. These forms would allow raw newlines and tabs that form part of the TSV format. A TSV format SPARQL result set must use the
-    single quoted literal forms, together with any necessary escapes such as <code>\t</code>, <code>\n</code> and <code>\r</code>.</p>
+    <h2>TSV — Tab Separated values</h2>
+    <p>In the SPARQL Results TSV Format, the results table is serialized as one line listing the variables
+      in the results, followed by one line for each query solution. All RDF terms used in the format are
+      encoded in the format specified by Turtle [[RDF12-TURTLE]
+      except that the triple quoted forms for the lexical part of
+      literals <em class="rfc2119" title="must not">must not</em> be used. These forms would allow raw
+      newlines and tabs that are part of the TSV format. A TSV format SPARQL result set must use the
+      single quoted literal forms, together with any necessary escapes such as <code>\t</code>, 
+      <code>\n</code>, and <code>\r</code>.</p>
 
       <section id="tsv-table">
       <h3>Serializing the Results Table</h3>
-      <p>The results table is serialized as one line listing the variables in the results, followed by one line for each query solution. This first line is required by the TSV format [[IANA-TSV]], unlike CSV, where it is optional.</p>
-      <p>Variables are serialized in SPARQL syntax, using question mark <code>?</code> character followed by the variable name.</p>
-      <p>Each row of the result set is serialized by sequence of RDF terms in SPARQL syntax, separated by a tab (Horizontal Tab, Unicode codepoint 9) character.</p>
-      <p>If a variable is not bound in a row, an empty field is used. Each row <em class="rfc2119" title="must">must</em> have the same number of fields, corresponding to the variables listed in the
-      first row.</p>
+      <p>The results table is serialized as one line listing the variables in the results, followed by
+        one line for each query solution. This first line is required by the TSV format [[IANA-TSV]],
+        unlike CSV, where it is optional.</p>
+      <p>Variables are serialized in SPARQL syntax, using question mark <code>?</code> character followed
+        by the variable name.</p>
+      <p>Each row of the result set is serialized by sequence of RDF terms in SPARQL syntax, separated
+        by a tab (Horizontal Tab, Unicode codepoint <code>U+0009</code>) character.</p>
+      <p>If a variable is not bound in a row, an empty field is used. Each row <em class="rfc2119"
+        title="must">must</em> have the same number of fields, corresponding to the variables listed in the
+        first row.</p>
       </section>
 
       <section id="tsv-terms">
       <h3>Serializing RDF Terms</h3>
-      <p>The SPARQL Results TSV Results Format serializes RDF terms in the results table by using the syntax that SPARQL
-       [[SPARQL12-QUERY]] and Turtle [[RDF12-TURTLE]] use.</p>
-      <p>IRIs are enclosed in <code>&lt;...&gt;</code>, literals are enclosed with double quotes <code>"</code>...<code>"</code> or single quotes <code>'</code> ...<code>'</code> with optional <code>@lang</code> or <code>^^</code>
-      for datatype.
-      IRIs are written enclosed in <code>&lt;...&gt;</code>.
-      They <em class="rfc2119" title="must">must</em> conform to the <a data-cite="rfc3987#section-2.2">IRI rule</a> of [[[RFC3987]]].
-      Such IRIs include the IRI scheme and <em class="rfc2119" title="must not">must not</em> be a <a data-cite="rfc3986#section-4.2">Relative Reference</a>.
-      This includes IRIs used as datatypes.
+      <p>The SPARQL Results TSV Format serializes RDF terms in the results table by using the syntax that
+        SPARQL [[SPARQL12-QUERY]] and Turtle [[RDF12-TURTLE]] use.</p>
+
+      <p>IRIs are enclosed in <code>&lt;...&gt;</code>, literals are enclosed with double quotes 
+        <code>"</code>...<code>"</code> or single quotes <code>'</code> ...<code>'</code> with optional
+        <code>@lang</code> or <code>^^</code> for datatype. IRIs are written enclosed in
+        <code>&lt;...&gt;</code>. They <em class="rfc2119" title="must">must</em> conform to the
+        <a href="https://www.rfc-editor.org/rfc/rfc3987#section-2.2">IRI rule</a> of [[[RFC3987]]].
+        Such IRIs include the IRI scheme and <em class="rfc2119" title="must not">must not</em> be
+        <a data-cite="rfc3986#section-4.2">Relative Reference</a>. 
+        This includes IRIs used as datatypes.
       </p>
-      <p>
-         Literals are written with the lexical form in quotes. Tab, newline and carriage return characters (Unicode codepoints 0x09, 0x0A (line feed) and 0x0D (Carriage Return)) are encoded in
-      strings as <code>\t</code>, <code>\n</code> and <code>\r</code> respectively. The long string forms using triple quotes <code>"""</code> and <code>'''</code> <em class="rfc2119" title="must not">must not</em> be
-      used. <!--  Emacs: " --></p>
-      <p>The abbreviated forms for numbers (XSD integers, decimals and doubles) <em class="rfc2119" title="should">should</em> be used.</p>
-      <p>Blank nodes use the <code>_:label</code> form from Turtle and SPARQL. Use of the same label indicates the same blank node within the results but has no significance outside the results.</p>
+      <p>Literals are written with the lexical form in quotes. Tab, newline, and carriage return characters
+        (Unicode codepoints <code>U+0009</code> (tab), <code>U+000A</code> (line feed) and <code>U+000D</code>
+        (carriage return)) are encoded in strings as <code>\t</code>, <code>\n</code> and <code>\r</code>
+        respectively. The long string forms using triple quotes — <code>"""</code> or <code>'''</code> 
+        — <em class="rfc2119" title="must not">must not</em> be used. <!--  Emacs: " --></p>
+      <p>The abbreviated forms for numbers (XSD integers, decimals, and doubles) <em class="rfc2119"
+        title="should">should</em> be used.</p>
+      <p>Blank nodes use the <code>_:label</code> form from Turtle and SPARQL. Use of the same label
+        indicates the same blank node within the result set, but has no significance outside the result set.</p>
       </section>
 
       <section id="tsv-example">
       <h3>Example of TSV-Serialized Results</h3>
-      <p>Writing <code>&lt;TAB&gt;</code> for a raw tab character (Unicode code point 9):</p>
+      <p>Writing <code>&lt;TAB&gt;</code> for a raw tab character (Unicode code point <code>U+0009</code>):</p>
       <pre class="box tsv nohighlight">?x&lt;TAB&gt;?literal
 &lt;http://example/x&gt;&lt;TAB&gt;"String"
 &lt;http://example/x&gt;&lt;TAB&gt;"String-with-dquote\"" 
@@ -543,6 +584,7 @@ _:blank1&lt;TAB&gt;123</pre>
     <section id="conformance">
       <h2>Conformance</h2>
     </section>
+
 <!-- BODY -->
     <section id="privacy">
       <h2>Privacy Considerations</h2>
