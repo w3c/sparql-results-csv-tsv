@@ -217,8 +217,8 @@
       is US-ASCII. The <code>charset</code> parameter <em class="rfc2119" title="should">should</em> be used in
       conjunction with SPARQL Results; UTF-8 is recommended; giving us <code>text/csv; charset=utf-8</code> and
       <code>text/tab-separated-values; charset=utf-8</code>.</p>
-    <p>The end-of-line in CSV is <code>CRLF</code>, i.e., Unicode codepoints 13 (<code>0x0D</code>) and 10 (<code>0x0A</code>).</p>
-    <p>The end-of-line in TSV is <code>EOL</code>, i.e., Unicode codepoint 10 (<code>0x0A</code>).</p>
+    <p>The end-of-line in CSV is <code>CRLF</code>, i.e., Unicode code points <code>U+0013</code> (<code>0x0D</code>) and <code>U+0010</code> (<code>0x0A</code>).</p>
+    <p>The end-of-line in TSV is <code>EOL</code>, i.e., Unicode code point <code>U+0010</code> (<code>0x0A</code>).</p>
     <p>Applications reading these formats are advised to cope with both CRLF and LF as end of line markers and
       not rely on conformance to the formal specifications.</p>
     </section>
@@ -298,7 +298,7 @@ _:b1,123</pre>
       <p>Variables are serialized in SPARQL syntax, using question mark <code>?</code> character followed
         by the variable name.</p>
       <p>Each row of the result set is serialized by sequence of RDF terms in SPARQL syntax, separated
-        by a tab (Horizontal Tab, Unicode codepoint <code>0x09</code>) character.</p>
+        by a tab (Horizontal Tab, Unicode code point <code>U+0009</code>) character.</p>
       <p>If a variable is not bound in a row, an empty field is used. Each row <em class="rfc2119"
         title="must">must</em> have the same number of fields, corresponding to the variables listed in the
         first row.</p>
@@ -319,7 +319,7 @@ _:b1,123</pre>
         includes IRIs used as datatypes.
       </p>
       <p>Literals are written with the lexical form in quotes. Tab, newline, and carriage return characters
-        (Unicode codepoints <code>0x09</code> (tab), <code>0x0A</code> (line feed) and <code>0x0D</code>
+        (Unicode code points <code>U+0009</code> (tab), <code>U+0010</code> (line feed) and <code>U+0013</code>
         (carriage return)) are encoded in strings as <code>\t</code>, <code>\n</code> and <code>\r</code>
         respectively. The long string forms using triple quotes — <code>"""</code> or <code>'''</code> 
         — <em class="rfc2119" title="must not">must not</em> be used. <!--  Emacs: " --></p>
@@ -331,7 +331,7 @@ _:b1,123</pre>
 
       <section id="tsv-example">
       <h3>Example of TSV-Serialized Results</h3>
-      <p>Writing <code>&lt;TAB&gt;</code> for a raw tab character (Unicode code point <code>0x09</code>):</p>
+      <p>Writing <code>&lt;TAB&gt;</code> for a raw tab character (Unicode code point <code>U+0009</code>):</p>
       <pre class="box tsv">?x&lt;TAB&gt;?literal
 &lt;http://example/x&gt;&lt;TAB&gt;"String"
 &lt;http://example/x&gt;&lt;TAB&gt;"String-with-dquote\"" 
