@@ -533,7 +533,7 @@ _:b1,123</pre>
       <p>Variables are serialized in SPARQL syntax, using question mark <code>?</code> character followed
         by the variable name.</p>
       <p>Each row of the result set is serialized by sequence of RDF terms in SPARQL syntax, separated
-        by a tab (Horizontal Tab, Unicode codepoint <code>U+0009</code>) character.</p>
+        by a tab (Horizontal Tab, Unicode code point <code>U+0009</code>) character.</p>
       <p>If a variable is not bound in a row, an empty field is used. Each row <em class="rfc2119"
         title="must">must</em> have the same number of fields, corresponding to the variables listed in the
         first row.</p>
@@ -554,7 +554,7 @@ _:b1,123</pre>
         This includes IRIs used as datatypes.
       </p>
       <p>Literals are written with the lexical form in quotes. Tab, newline, and carriage return characters
-        (Unicode codepoints <code>U+0009</code> (tab), <code>U+000A</code> (line feed) and <code>U+000D</code>
+        (Unicode code points <code>U+0009</code> (tab), <code>U+0010</code> (line feed) and <code>U+0013</code>
         (carriage return)) are encoded in strings as <code>\t</code>, <code>\n</code> and <code>\r</code>
         respectively. The long string forms using triple quotes — <code>"""</code> or <code>'''</code> 
         — <em class="rfc2119" title="must not">must not</em> be used. <!--  Emacs: " --></p>
