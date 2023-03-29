@@ -463,8 +463,17 @@ span.cancast:hover { background-color: #ffa;
     <h2>CSV — Comma Separated values</h2>
     <p>In the SPARQL Results CSV Format, the results table is serialized as one line listing the variables in
       the results, using the CSV header line, followed by one line for each query solution. (Note: a line may end up
-      split by newlines in the data). Values in the results are strings for URIs, literals, and blank nodes, together
-      with numbers when the literals are of numeric XSD datatype.</p>
+      split by newlines in the data). Values in the results are:</p>
+      <ul>
+        <li>strings for 
+          <ul>
+            <li>URIs</li>
+            <li>lexical forms of non-numeric XSD datatypes</li>
+            <li>blank node labels</li>
+          </ul>
+        </li>
+        <li>numbers for literals of numeric XSD datatypes</li>
+      </ul>
       <section id="serializing-results">
       <h3>Serializing the Results Table</h3>
       <p>The first line of a SPARQL Results CSV Format response is the header line, giving the names of the variables
