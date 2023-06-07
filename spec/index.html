@@ -442,6 +442,30 @@ span.cancast:hover { background-color: #ffa;
         </tbody>
       </table>
       </section>
+
+      <section id="example2-quoted">
+      <h3>Example with Quoted Triples</h3>
+      <p>The following artificial example is used to illustrate the features of serializing results containing quoted triples.</p>
+      <table class="result">
+        <tbody>
+          <tr>
+            <th>x</th>
+            <th>quoted</th>
+            <th class="tablecomment"><i>Comment (not part of the table)</i></th>
+          </tr>
+          <tr>
+            <td>"Alice"</td>
+            <td>&lt;&lt;&lt;http://example/alice&gt; &lt;http://example/knows&gt; &lt;http://example/bob&gt;&gt;&gt;</td>
+            <td class="tablecomment">A plain string and quoted triple with subject IRI <code>http://example/alice</code> predicate IRI <code>http://example/knows</code>, and object IRI <code>http://example/bob</code>.</td>
+          </tr>
+          <tr>
+            <td>"Bob"</td>
+            <td>&lt;&lt;&lt;http://example/bob&gt; &lt;http://example/knows&gt; &lt;http://example/alice&gt;&gt;&gt;</td>
+            <td class="tablecomment">A plain string and quoted triple with subject IRI <code>http://example/bob</code> predicate IRI <code>http://example/knows</code>, and object IRI <code>http://example/alice</code>.</td>
+          </tr>
+        </tbody>
+      </table>
+      </section>
     </section>
     <section id="general-comments">
     <h2>Transmission issues using CSV and TSV Formats</h2>
@@ -470,6 +494,7 @@ span.cancast:hover { background-color: #ffa;
             <li>URIs</li>
             <li>lexical forms of non-numeric XSD datatypes</li>
             <li>blank node labels</li>
+            <li>quoted triples</li>
           </ul>
         </li>
         <li>numbers for literals of numeric XSD datatypes</li>
@@ -495,6 +520,11 @@ span.cancast:hover { background-color: #ffa;
         without syntax to denote what kind of term it is. The encoding quoting rules of CSV format must be used.</p>
       <p>Blank nodes use the <code>_:label</code> form from Turtle and SPARQL. Use of the same label indicates the
         same blank node within the result set but has no significance outside the result set.</p>
+      <p>Quoted triples are enclosed in <code>&lt;&lt;<em>subject</em> <em>predicate</em> <em>object</em>&gt;&gt;</code>,
+         where the <em>subject</em>, <em>predicate</em>, and <em>object</em> terms are recursively serialized.
+         The serializations of <em>subject</em>, <em>predicate</em>, and <em>object</em>
+         <em class="rfc2119" title="must">must</em> be separated by a single space character
+         (<small>SPACE</small>, code point 32, <code>U+0020</code>).</p>
       <p>Fields containing any of <code>"</code> (<small>QUOTATION MARK</small>, code point 34, <code>U+0022</code> in 
         Unicode [[UNICODE]]),
         <code>,</code> (<small>COMMA</small>, code point 44, <code>U+002C</code>), <code>LF</code> (code point 10,
@@ -521,13 +551,20 @@ http://example/x,
 _:b1,String-with-lang
 _:b1,123</pre>
       </section>
+
+      <section id="csv-example-quoted">
+      <h3>Example of CSV-Serialized Results with Quoted Triples</h3>
+      <pre class="box csv nohighlight">x,quoted
+"Alice",&lt;&lt;http://example/alice http://example/knows http://example/bob&gt;&gt;
+"Bob",&lt;&lt;http://example/bob http://example/knows http://example/alice&gt;&gt;</pre>
+      </section>
     </section>
 
     <section id="tsv">
     <h2>TSV — Tab Separated values</h2>
     <p>In the SPARQL Results TSV Format, the results table is serialized as one line listing the variables
       in the results, followed by one line for each query solution. All RDF terms used in the format are
-      encoded in the format specified by Turtle [[RDF12-TURTLE]
+      encoded in the format specified by Turtle [RDF12-TURTLE]
       except that the triple quoted forms for the lexical part of
       literals <em class="rfc2119" title="must not">must not</em> be used. These forms would allow raw
       newlines and tabs that are part of the TSV format. A TSV format SPARQL result set must use the
@@ -571,6 +608,11 @@ _:b1,123</pre>
         title="should">should</em> be used.</p>
       <p>Blank nodes use the <code>_:label</code> form from Turtle and SPARQL. Use of the same label
         indicates the same blank node within the result set, but has no significance outside the result set.</p>
+      <p>Quoted triples are enclosed in <code>&lt;&lt;<em>subject</em> <em>predicate</em> <em>object</em>&gt;&gt;</code>,
+         where the <em>subject</em>, <em>predicate</em>, and <em>object</em> terms are recursively serialized.
+         The serializations of <em>subject</em>, <em>predicate</em>, and <em>object</em>
+         <em class="rfc2119" title="must">must</em> be separated by a single space character
+         (<small>SPACE</small>, code point 32, <code>U+0020</code>).</p>
       </section>
 
       <section id="tsv-example">
@@ -587,6 +629,14 @@ _:blank0&lt;TAB&gt;"Blank node"
 &lt;http://example/x&gt;&lt;TAB&gt;
 _:blank1&lt;TAB&gt;"String-with-lang"@en
 _:blank1&lt;TAB&gt;123</pre>
+      </section>
+
+      <section id="tsv-example-quoted">
+      <h3>Example of TSV-Serialized Results with Quoted Triples</h3>
+      <p>Writing <code>&lt;TAB&gt;</code> for a raw tab character (Unicode code point <code>U+0009</code>):</p>
+      <pre class="box tsv nohighlight">?x&lt;TAB&gt;?quoted
+"Alice"&lt;TAB&gt;&lt;&lt;&lt;http://example/alice&gt; &lt;http://example/knows&gt; &lt;http://example/bob&gt;&gt;&gt;
+"Bob"&lt;TAB&gt;&lt;&lt;&lt;http://example/bob&gt; &lt;http://example/knows&gt; &lt;http://example/alice&gt;&gt;&gt;</pre>
       </section>
     </section>
 
