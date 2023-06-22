@@ -455,12 +455,12 @@ span.cancast:hover { background-color: #ffa;
           </tr>
           <tr>
             <td>"Alice"</td>
-            <td>&lt;&lt;&lt;http://example/alice&gt; &lt;http://example/knows&gt; &lt;http://example/bob&gt;&gt;&gt;</td>
+            <td>&lt;&lt; &lt;http://example/alice&gt; &lt;http://example/knows&gt; &lt;http://example/bob&gt; &gt;&gt;</td>
             <td class="tablecomment">A plain string and quoted triple with subject IRI <code>http://example/alice</code> predicate IRI <code>http://example/knows</code>, and object IRI <code>http://example/bob</code>.</td>
           </tr>
           <tr>
             <td>"Bob"</td>
-            <td>&lt;&lt;&lt;http://example/bob&gt; &lt;http://example/knows&gt; &lt;http://example/alice&gt;&gt;&gt;</td>
+            <td>&lt;&lt; &lt;http://example/bob&gt; &lt;http://example/knows&gt; &lt;http://example/alice&gt; &gt;&gt;</td>
             <td class="tablecomment">A plain string and quoted triple with subject IRI <code>http://example/bob</code> predicate IRI <code>http://example/knows</code>, and object IRI <code>http://example/alice</code>.</td>
           </tr>
         </tbody>
@@ -520,11 +520,12 @@ span.cancast:hover { background-color: #ffa;
         without syntax to denote what kind of term it is. The encoding quoting rules of CSV format must be used.</p>
       <p>Blank nodes use the <code>_:label</code> form from Turtle and SPARQL. Use of the same label indicates the
         same blank node within the result set but has no significance outside the result set.</p>
-      <p>Quoted triples are enclosed in <code>&lt;&lt;<em>subject</em> <em>predicate</em> <em>object</em>&gt;&gt;</code>,
+      <p>Quoted triples are enclosed in <code>&lt;&lt; <em>subject</em> <em>predicate</em> <em>object</em> &gt;&gt;</code>,
          where the <em>subject</em>, <em>predicate</em>, and <em>object</em> terms are recursively serialized.
          The serializations of <em>subject</em>, <em>predicate</em>, and <em>object</em>
          <em class="rfc2119" title="must">must</em> be separated by a single space character
-         (<small>SPACE</small>, code point 32, <code>U+0020</code>).</p>
+         (<small>SPACE</small>, code point 32, <code>U+0020</code>). The single space character preceding <em>subject</em>,
+         and the single space character following <em>object</em> are optional, which are mainly valuable for human readability.</p>
       <p>Fields containing any of <code>"</code> (<small>QUOTATION MARK</small>, code point 34, <code>U+0022</code> in 
         Unicode [[UNICODE]]),
         <code>,</code> (<small>COMMA</small>, code point 44, <code>U+002C</code>), <code>LF</code> (code point 10,
@@ -555,8 +556,8 @@ _:b1,123</pre>
       <section id="csv-example-quoted">
       <h3>Example of CSV-Serialized Results with Quoted Triples</h3>
       <pre class="box csv nohighlight">x,quoted
-"Alice",&lt;&lt;http://example/alice http://example/knows http://example/bob&gt;&gt;
-"Bob",&lt;&lt;http://example/bob http://example/knows http://example/alice&gt;&gt;</pre>
+"Alice",&lt;&lt; http://example/alice http://example/knows http://example/bob &gt;&gt;
+"Bob",&lt;&lt; http://example/bob http://example/knows http://example/alice &gt;&gt;</pre>
       </section>
     </section>
 
@@ -612,7 +613,8 @@ _:b1,123</pre>
          where the <em>subject</em>, <em>predicate</em>, and <em>object</em> terms are recursively serialized.
          The serializations of <em>subject</em>, <em>predicate</em>, and <em>object</em>
          <em class="rfc2119" title="must">must</em> be separated by a single space character
-         (<small>SPACE</small>, code point 32, <code>U+0020</code>).</p>
+         (<small>SPACE</small>, code point 32, <code>U+0020</code>). The single space character preceding <em>subject</em>,
+         and the single space character following <em>object</em> are optional, which are mainly valuable for human readability.</p>
       </section>
 
       <section id="tsv-example">
@@ -635,8 +637,8 @@ _:blank1&lt;TAB&gt;123</pre>
       <h3>Example of TSV-Serialized Results with Quoted Triples</h3>
       <p>Writing <code>&lt;TAB&gt;</code> for a raw tab character (Unicode code point <code>U+0009</code>):</p>
       <pre class="box tsv nohighlight">?x&lt;TAB&gt;?quoted
-"Alice"&lt;TAB&gt;&lt;&lt;&lt;http://example/alice&gt; &lt;http://example/knows&gt; &lt;http://example/bob&gt;&gt;&gt;
-"Bob"&lt;TAB&gt;&lt;&lt;&lt;http://example/bob&gt; &lt;http://example/knows&gt; &lt;http://example/alice&gt;&gt;&gt;</pre>
+"Alice"&lt;TAB&gt;&lt;&lt; &lt;http://example/alice&gt; &lt;http://example/knows&gt; &lt;http://example/bob&gt; &gt;&gt;
+"Bob"&lt;TAB&gt;&lt;&lt; &lt;http://example/bob&gt; &lt;http://example/knows&gt; &lt;http://example/alice&gt; &gt;&gt;</pre>
       </section>
     </section>
 
