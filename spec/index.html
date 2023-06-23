@@ -460,6 +460,11 @@ span.cancast:hover { background-color: #ffa;
             <td>&lt;&lt; &lt;http://example/bob&gt; &lt;http://example/knows&gt; &lt;http://example/alice&gt; &gt;&gt;</td>
             <td class="tablecomment">A plain string and quoted triple with subject IRI <code>http://example/bob</code> predicate IRI <code>http://example/knows</code>, and object IRI <code>http://example/alice</code>.</td>
           </tr>
+          <tr>
+            <td>"Carol"</td>
+            <td>&lt;&lt; &lt;http://example/carol&gt; &lt;http://example/says&gt; "Hello world, my name is \"Alice\"."&gt;</td>
+            <td class="tablecomment">A plain string and quoted triple with subject IRI <code>http://example/carol</code> predicate IRI <code>http://example/says</code>, and object literal <code>Hello world, my name is "Alice".</code>.</td>
+          </tr>
         </tbody>
       </table>
       </section>
@@ -522,7 +527,9 @@ span.cancast:hover { background-color: #ffa;
          The serializations of <em>subject</em>, <em>predicate</em>, and <em>object</em>
          <em class="rfc2119" title="must">must</em> be separated by a single space character
          (<small>SPACE</small>, code point 32, <code>U+0020</code>). The single space character preceding <em>subject</em>,
-         and the single space character following <em>object</em> are optional, which are mainly valuable for human readability.</p>
+         and the single space character following <em>object</em> are optional, which are mainly valuable for human readability.
+         If the <em>object</em> is a literal, then it <em class="rfc2119" title="must">must</em> be encapsulated within
+         a pair of quotation marks <code>""</code>.</p>
       <p>Fields containing any of <code>"</code> (<small>QUOTATION MARK</small>, code point 34, <code>U+0022</code> in 
         Unicode [[UNICODE]]),
         <code>,</code> (<small>COMMA</small>, code point 44, <code>U+002C</code>), <code>LF</code> (code point 10,
@@ -530,7 +537,13 @@ span.cancast:hover { background-color: #ffa;
         mechanism of RFC4180 [[RFC4180]].
         Fields are limited by a pair of quotation marks <code>"</code> (code point <code>U+0022</code>). Within quote strings, all
         characters except <code>"</code>, including new line characters have their exact meaning — newlines do not
-        end a CSV record. Inline <code>"</code> is written using a pair of quotation marks <code>""</code>.</p>
+        end a CSV record. Inline <code>"</code> is written using a pair of quotation marks <code>""</code>.
+        This quoting mechanism is applied recursively for terms in quoted triples.</p>
+      <p id="csv-terms-escaping" class="note">
+        Since quoted triples with literals in the object position are encapsulated within a pair of quotation marks <code>""</code>,
+        the full quoted triple will always be encapsulated within quotation marks as well,
+        which requires the subsequent escaping of the quotation marks encapsulating the literal.
+        Such cases will result in quoted triples in the form of <code>"&lt;&lt; <em>subject</em> <em>predicate</em> ""<em>object-literal</em>"" &gt;&gt;"</code>.</p>
       <p>The standard CSV format does not distinguish between missing values and empty strings. The SPARQL 1.2
         Results CSV Format uses the same representation for unbound variables as for variables bound to an empty
         string literal. The other SPARQL Result formats (based on JSON, TSV, or XML) can be used if this distinction
@@ -554,7 +567,8 @@ _:b1,123</pre>
       <h3>Example of CSV-Serialized Results with Quoted Triples</h3>
       <pre class="box csv nohighlight">x,quoted
 "Alice",&lt;&lt; http://example/alice http://example/knows http://example/bob &gt;&gt;
-"Bob",&lt;&lt; http://example/bob http://example/knows http://example/alice &gt;&gt;</pre>
+"Bob",&lt;&lt; http://example/bob http://example/knows http://example/alice &gt;&gt;
+"Carol","&lt;&lt; http://example/carol http://example/says ""Hello world, my name is """"Alice""""."" &gt;&gt;"</pre>
       </section>
     </section>
 
@@ -635,7 +649,8 @@ _:blank1&lt;TAB&gt;123</pre>
       <p>Writing <code>&lt;TAB&gt;</code> for a raw tab character (Unicode code point <code>U+0009</code>):</p>
       <pre class="box tsv nohighlight">?x&lt;TAB&gt;?quoted
 "Alice"&lt;TAB&gt;&lt;&lt; &lt;http://example/alice&gt; &lt;http://example/knows&gt; &lt;http://example/bob&gt; &gt;&gt;
-"Bob"&lt;TAB&gt;&lt;&lt; &lt;http://example/bob&gt; &lt;http://example/knows&gt; &lt;http://example/alice&gt; &gt;&gt;</pre>
+"Bob"&lt;TAB&gt;&lt;&lt; &lt;http://example/bob&gt; &lt;http://example/knows&gt; &lt;http://example/alice&gt; &gt;&gt;
+"Carol"&lt;TAB&gt;&lt;&lt; &lt;http://example/carol&gt; &lt;http://example/says&gt; "Hello world, my name is \"Alice\". &gt;&gt;</pre>
       </section>
     </section>
 
