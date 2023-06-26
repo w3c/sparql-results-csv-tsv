@@ -531,12 +531,14 @@ span.cancast:hover { background-color: #ffa;
          and the single space character following <em>object</em> are optional, and are mainly valuable for human readability.
          If the <em>object</em> is a literal, then it <em class="rfc2119" title="must">must</em> be encapsulated within
          a pair of quotation marks <code>""</code>.</p>
-      <p>Fields containing any of <code>"</code> (<small>QUOTATION MARK</small>, code point 34, <code>U+0022</code> in 
-        Unicode [[UNICODE]]),
-        <code>,</code> (<small>COMMA</small>, code point 44, <code>U+002C</code>), <code>LF</code> (code point 10,
-        <code>U+000A</code>) or <code>CR</code> (code point 13, <code>U+000D</code>) must be quoted using the quoting
+      <p>Fields containing any of 
+        <code>"</code> (<small>QUOTATION MARK</small>, code point 34, <code>U+0022</code> in Unicode [[UNICODE]]),
+        <code>,</code> (<small>COMMA</small>, code point 44, <code>U+002C</code>),
+        <code>LF</code> (code point 10, <code>U+000A</code>), or
+        <code>CR</code> (code point 13, <code>U+000D</code>)
+        <em class="rfc2119" title="must">must</em> be quoted using the quoting
         mechanism of RFC4180 [[RFC4180]].
-        Fields are limited by a pair of quotation marks <code>"</code> (code point <code>U+0022</code>). Within quote strings, all
+        Fields are delimited by a pair of quotation marks <code>"</code> (code point <code>U+0022</code>). Within quoted strings, all
         characters except <code>"</code>, including new line characters, have their exact meaning — newlines do not
         end a CSV record. Inline <code>"</code> is written using a pair of quotation marks <code>""</code>.
         This quoting mechanism is applied recursively for terms in quoted triples.</p>
