@@ -541,9 +541,9 @@ span.cancast:hover { background-color: #ffa;
         end a CSV record. Inline <code>"</code> is written using a pair of quotation marks <code>""</code>.
         This quoting mechanism is applied recursively for terms in quoted triples.</p>
       <p id="csv-terms-escaping" class="note">
-        Since quoted triples with literals in the object position are encapsulated within a pair of quotation marks <code>""</code>,
-        the full quoted triple will always be encapsulated within quotation marks as well,
-        which requires the subsequent escaping of the quotation marks encapsulating the literal.
+        Since literals in the object position of quoted triples are encapsulated within a pair of quotation marks <code>"</code>, and
+        the full quoted triple is always encapsulated within quotation marks as well,
+        this requires the subsequent escaping of the "inner" quotation marks encapsulating the literal.
         Such cases will result in quoted triples in the form of <code>"&lt;&lt; <em>subject</em> <em>predicate</em> ""<em>object-literal</em>"" &gt;&gt;"</code>.</p>
       <p>The standard CSV format does not distinguish between missing values and empty strings. The SPARQL 1.2
         Results CSV Format uses the same representation for unbound variables as for variables bound to an empty
