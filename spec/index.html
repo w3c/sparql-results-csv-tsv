@@ -436,6 +436,11 @@ span.cancast:hover { background-color: #ffa;
           </tr>
           <tr>
             <td>_:b1</td>
+            <td>"String-with-lang-dir"@en--ltr</td>
+            <td class="tablecomment">An RDF literal with a directional language tag</td>
+          </tr>
+          <tr>
+            <td>_:b1</td>
             <td>123</td>
             <td class="tablecomment">An RDF literal, datatype xsd:integer, and lexical form 123.</td>
           </tr>
@@ -563,6 +568,7 @@ _:b0,Blank node
 ,
 http://example/x,
 _:b1,String-with-lang
+_:b1,String-with-lang-dir
 _:b1,123</pre>
       </section>
 
@@ -645,6 +651,7 @@ _:blank0&lt;TAB&gt;"Blank node"
 &lt;TAB&gt;
 &lt;http://example/x&gt;&lt;TAB&gt;
 _:blank1&lt;TAB&gt;"String-with-lang"@en
+_:blank1&lt;TAB&gt;"String-with-lang-dir"@en--ltr
 _:blank1&lt;TAB&gt;123</pre>
       </section>
 
