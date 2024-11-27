@@ -142,9 +142,6 @@ pre.codeBlock  { font-family:monospace ; page-break-inside: avoid ;
 	         margin-right: 2ex ;
                  border: thin solid #888888; }
 
-
-
-
 /* Examples */
 pre.data	{ border: thin solid #88AA88;
                   background-color: #E8F0E8;
@@ -337,10 +334,6 @@ span.cancast:hover { background-color: #ffa;
   div.exampleWrapper { margin: 4px }
   div.exampleHeader { font-weight: bold;
                     margin: 4px}
-
-  em.rfc2119 { text-transform: lowercase;
-             font-variant: small-caps;
-             font-style: normal; }
     </style>
   </head>
   <body>
@@ -383,11 +376,11 @@ span.cancast:hover { background-color: #ffa;
       a TSV-encoded result set can split each line into elements of the result row, and extract all the details of
       the RDF terms it wishes to process by simple string processing, without a complete XML or JSON parser as may 
       by required by the more complex SPARQL result formats.</p>
-    <p>When this document uses the words <em class="rfc2119" title="must">must</em>, <em class="rfc2119" 
-      title="must not">must not</em>, <em class="rfc2119" title="should">should</em>, <em class="rfc2119"
-      title="should not">should not</em>, <em class="rfc2119" title="may">may</em> and <em class="rfc2119"
-      title="recommended">recommended</em>, they must be interpreted as described in RFC
-      2119 [[RFC2119]].</p>
+
+     <p>
+       When this document uses the words MUST, MUST NOT, SHOULD, SHOULD NOT, and MAY, and the words
+       appear as emphasized text, they must be interpreted as described in [[RFC2119]].
+     </p>
 
       <section id="example1">
       <h3>Example</h3>
@@ -481,7 +474,7 @@ span.cancast:hover { background-color: #ffa;
       and Tab Separated Value (TSV) [[IANA-TSV]].</p>
     <p>Systems providing these formats should note that the content types are <code>text/csv</code> for CSV and 
       <code>text/tab-separated-values</code> for TSV. Being <code>text/*</code>, the default character set
-      is US-ASCII. The <code>charset</code> parameter <em class="rfc2119" title="should">should</em> be used in
+      is US-ASCII. The <code>charset</code> parameter SHOULD be used in
       conjunction with SPARQL Results; UTF-8 is recommended; giving us <code>text/csv; charset=utf-8</code> and
       <code>text/tab-separated-values; charset=utf-8</code>.</p>
     <p>The end-of-line in CSV is <code>CRLF</code>, i.e., Unicode codepoints 13 (<code>U+000D</code>) and 10 (<code>U+000A</code>).</p>
@@ -512,12 +505,11 @@ span.cancast:hover { background-color: #ffa;
         used in the result set. The header line consists of the variable names, without leading question marks
         <code>?</code>, separated by commas.</p>
       <p>While the <code>text/csv</code> format does not require a header row, the SPARQL Results CSV Format 
-        <em class="rfc2119" title="must">must</em> use a header row. If the content type parameter
-        <code>header</code> is used, it <em class="rfc2119" title="must">must</em> be <code>header=present</code>.</p>
+        MUST use a header row. If the content type parameter
+        <code>header</code> is used, it MUST be <code>header=present</code>.</p>
       <p>The remaining rows are the values of the results, with each binding determined by the position in the row,
         corresponding to the entry in the header line.</p>
-      <p>If a variable is not bound, an empty field is used (e.g. <code>,,</code>). Each row <em class="rfc2119"
-        title="must">must</em> have the same number of fields, with each field corresponding to a
+      <p>If a variable is not bound, an empty field is used (e.g. <code>,,</code>). Each row MUST have the same number of fields, with each field corresponding to a
         binding to the variable in the header line in the same field position.</p>
       </section>
 
@@ -531,17 +523,17 @@ span.cancast:hover { background-color: #ffa;
       as <code>&lt;&lt;( <em>subject</em> <em>predicate</em> <em>object</em> )&gt;&gt;</code>,
          where the <em>subject</em>, <em>predicate</em>, and <em>object</em> terms are recursively serialized.
          The serializations of <em>subject</em>, <em>predicate</em>, and <em>object</em>
-         <em class="rfc2119" title="must">must</em> be separated by a single space character
+         MUST be separated by a single space character
          (<small>SPACE</small>, code point 32, <code>U+0020</code>). The single space character preceding <em>subject</em>,
          and the single space character following <em>object</em> are optional, and are mainly valuable for human readability.
-         If the <em>object</em> is a literal, then it <em class="rfc2119" title="must">must</em> be encapsulated within
+         If the <em>object</em> is a literal, then it MUST be encapsulated within
          a pair of quotation marks <code>""</code>.</p>
       <p>Fields containing any of 
         <code>"</code> (<small>QUOTATION MARK</small>, code point 34, <code>U+0022</code> in Unicode [[UNICODE]]),
         <code>,</code> (<small>COMMA</small>, code point 44, <code>U+002C</code>),
         <code>LF</code> (code point 10, <code>U+000A</code>), or
         <code>CR</code> (code point 13, <code>U+000D</code>)
-        <em class="rfc2119" title="must">must</em> be quoted using the quoting
+        MUST be quoted using the quoting
         mechanism of RFC4180 [[RFC4180]].
         Fields are delimited by a pair of quotation marks <code>"</code> (code point <code>U+0022</code>). Within quoted strings, all
         characters except <code>"</code>, including new line characters, have their exact meaning — newlines do not
@@ -587,7 +579,7 @@ _:b1,123</pre>
       in the results, followed by one line for each query solution. All RDF terms used in the format are
       encoded in the format specified by Turtle [RDF12-TURTLE]
       except that the triple term forms for the lexical part of
-      literals <em class="rfc2119" title="must not">must not</em> be used. These forms would allow raw
+      literals MUST NOT be used. These forms would allow raw
       newlines and tabs that are part of the TSV format. A TSV format SPARQL result set must use the
       single quoted literal forms, together with any necessary escapes such as <code>\t</code>, 
       <code>\n</code>, and <code>\r</code>.</p>
@@ -601,8 +593,8 @@ _:b1,123</pre>
         by the variable name.</p>
       <p>Each row of the result set is serialized by sequence of RDF terms in SPARQL syntax, separated
         by a tab (Horizontal Tab, Unicode code point <code>U+0009</code>) character.</p>
-      <p>If a variable is not bound in a row, an empty field is used. Each row <em class="rfc2119"
-        title="must">must</em> have the same number of fields, corresponding to the variables listed in the
+      <p>If a variable is not bound in a row, an empty field is used. Each row MUST
+        have the same number of fields, corresponding to the variables listed in the
         first row.</p>
       </section>
 
@@ -614,9 +606,9 @@ _:b1,123</pre>
       <p>IRIs are enclosed in <code>&lt;...&gt;</code>, literals are enclosed with double quotes 
         <code>"</code>...<code>"</code> or single quotes <code>'</code> ...<code>'</code> with optional
         <code>@lang</code> or <code>^^</code> for datatype. IRIs are written enclosed in
-        <code>&lt;...&gt;</code>. They <em class="rfc2119" title="must">must</em> conform to the
+        <code>&lt;...&gt;</code>. They MUST conform to the
         <a href="https://www.rfc-editor.org/rfc/rfc3987#section-2.2">IRI rule</a> of [[[RFC3987]]].
-        Such IRIs include the IRI scheme and <em class="rfc2119" title="must not">must not</em> be
+        Such IRIs include the IRI scheme and MUST NOT be
         <a data-cite="rfc3986#section-4.2">Relative Reference</a>. 
         This includes IRIs used as datatypes.
       </p>
@@ -624,16 +616,15 @@ _:b1,123</pre>
         (Unicode code points <code>U+0009</code> (tab), <code>U+0010</code> (line feed) and <code>U+0013</code>
         (carriage return)) are encoded in strings as <code>\t</code>, <code>\n</code> and <code>\r</code>
         respectively. The long string forms using triple quotes — <code>"""</code> or <code>'''</code> 
-        — <em class="rfc2119" title="must not">must not</em> be used. <!--  Emacs: " --></p>
-      <p>The abbreviated forms for numbers (XSD integers, decimals, and doubles) <em class="rfc2119"
-        title="should">should</em> be used.</p>
+        — MUST NOT be used.</p>
+      <p>The abbreviated forms for numbers (XSD integers, decimals, and doubles) SHOULD be used.</p>
       <p>Blank nodes use the <code>_:label</code> form from Turtle and SPARQL. Use of the same label
         indicates the same blank node within the result set, but has no significance outside the result set.</p>
       <p>Triple terms are enclosed in <code>&lt;&lt;( &mldr; )&gt;&gt;</code>,
       as in <code>&lt;&lt;(<em>subject</em> <em>predicate</em> <em>object</em>)&gt;&gt;</code>,
          where the <em>subject</em>, <em>predicate</em>, and <em>object</em> terms are recursively serialized.
          The serializations of <em>subject</em>, <em>predicate</em>, and <em>object</em>
-         <em class="rfc2119" title="must">must</em> be separated by a single space character
+         MUST be separated by a single space character
          (<small>SPACE</small>, code point 32, <code>U+0020</code>). The single space character preceding <em>subject</em>,
          and the single space character following <em>object</em> are optional, and are mainly valuable for human readability.</p>
       </section>
