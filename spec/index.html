@@ -45,6 +45,17 @@
         lint: { "no-unused-dfns": false }
       };
     </script>
+
+    <style>
+      table.result {
+        border-collapse: collapse;
+      }
+
+      .result > th, td {
+        border: 1px solid;
+        padding-inline: 0.5em;
+      }
+    </style>
   </head>
   <body>
     <section id="abstract">
@@ -95,7 +106,7 @@
       <section id="example1">
       <h3>Example</h3>
       <p>The following artificial example is used to illustrate the features of serializing results in each format.</p>
-      <table>
+      <table class="result">
         <tbody>
           <tr>
             <th>x</th>
@@ -151,7 +162,7 @@
       </table>
 
       <p>The following artificial example is used to illustrate the features of serializing results containing triple terms.</p>
-      <table>
+      <table class="result">
         <tbody>
           <tr>
             <th>x</th>
