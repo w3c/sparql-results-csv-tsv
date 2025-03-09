@@ -45,17 +45,6 @@
         lint: { "no-unused-dfns": false }
       };
     </script>
-
-    <style>
-      table.result {
-        border-collapse: collapse;
-      }
-
-      .result th , .result td {
-        border: 1px solid;
-        padding-inline: 0.5em;
-      }
-    </style>
   </head>
   <body>
     <section id="abstract">
@@ -106,13 +95,15 @@
       <section id="example1">
       <h3>Example</h3>
       <p>The following artificial example is used to illustrate the features of serializing results in each format.</p>
-      <table class="result">
-        <tbody>
+      <table class="data">
+        <thead>
           <tr>
             <th>x</th>
             <th>literal</th>
             <th><i>Comment (not part of the table)</i></th>
           </tr>
+        </thead>
+        <tbody>
           <tr>
             <td><code>&lt;http://example/x&gt;</code></td>
             <td><code>String</code></td>
@@ -162,13 +153,15 @@
       </table>
 
       <p>The following artificial example is used to illustrate the features of serializing results containing triple terms.</p>
-      <table class="result">
-        <tbody>
+      <table class="data">
+        <thead>
           <tr>
             <th>x</th>
             <th>triple</th>
             <th><i>Comment (not part of the table)</i></th>
           </tr>
+        </thead>
+        <tbody>
           <tr>
             <td><code>"Alice"</code></td>
             <td><code>&lt;&lt;( &lt;http://example/alice&gt; &lt;http://example/knows&gt; &lt;http://example/bob&gt; )&gt;&gt;</code></td>
