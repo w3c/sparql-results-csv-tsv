@@ -229,8 +229,11 @@
 
       <section id="csv-terms">
       <h3>Serializing RDF Terms</h3>
-      <p>The entry in each field is the string corresponding to the RDF term value. (cf. SPARQL <code>STR()</code>)
+      <p>The entry in each field is the string corresponding to the RDF term value
         without syntax to denote what kind of term it is. The encoding quoting rules of CSV format must be used.</p>
+      <p>IRIs are represented by a string of the characters of the IRI, with escaping only for what the CSV format requires.</p>
+      <p>Literals are represented by their lexical value alone, without any language tag, base direction, or datatype information,
+        and with escaping only for what the CSV format requires.</p>
       <p>Blank nodes use the <code>_:label</code> form from Turtle and SPARQL. Use of the same label indicates the
         same blank node within the result set but has no significance outside the result set.</p>
       <p>Triple terms are enclosed in <code>&lt;&lt;( &mldr; )&gt;&gt;</code>,
